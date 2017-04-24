@@ -33,5 +33,28 @@ static const char LyRefreshHeaderKey = '\0';
     return objc_getAssociatedObject(self, &LyRefreshHeaderKey);
 }
 
-//static const char LyRefreshFooterKey = '\0';
+#pragma mark - 下拉刷新
+static const char LyRefreshFooterKey = '\0';
+- (void)setLy_foot:(LyFootRefresh *)ly_foot
+{
+    if (ly_foot != self.ly_foot)
+    {
+        //移除旧的添加新的
+        [self.ly_foot removeFromSuperview];
+        [self insertSubview:ly_foot atIndex:0];
+//        [self addSubview:ly_foot];
+        
+        // 存储新的
+        [self willChangeValueForKey:@"ly_foot"]; // KVO
+        objc_setAssociatedObject(self, &LyRefreshFooterKey,
+                                 ly_foot, OBJC_ASSOCIATION_ASSIGN);
+        [self didChangeValueForKey:@"ly_foot"]; // KVO
+    }
+}
+
+- (LyFootRefresh *)ly_foot
+{
+    return objc_getAssociatedObject(self, &LyRefreshFooterKey);
+}
+
 @end

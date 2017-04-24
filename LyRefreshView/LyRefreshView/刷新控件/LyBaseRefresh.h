@@ -21,17 +21,15 @@ static NSString *const LyRefreshViewObservingkeyPath = @"contentOffset";
 
 @interface LyBaseRefresh : UIView
 
-@property(nonatomic,strong)UILabel          *label;
-@property(nonatomic,  weak)UIScrollView     *scrollView;
-@property(nonatomic,  copy)beginOperation   beginOperation;
+// 加载指示器
+@property(nonatomic,strong)UIActivityIndicatorView *activityIndicatorView;
+@property(nonatomic,weak  )UIScrollView            *scrollView;
+@property(nonatomic,copy  )beginOperation          beginOperation;
 
-@property (nonatomic, assign)LyRefreshState refreshState;//刷新状态
-// 子类自定义位置使用
-@property (nonatomic, assign) UIEdgeInsets scrollViewEdgeInsets;
-
-+ (instancetype)refreshView;
-
-- (void)endChangeEdgeInset;
+@property(nonatomic,assign)LyRefreshState refreshState;//刷新状态
+@property(nonatomic,assign)UIEdgeInsets   originEdgeInsets;//初始状态的位置
 
 - (void)endRefresh;
+- (void)endRefreshWithTitle:(NSString *)title;
+
 @end

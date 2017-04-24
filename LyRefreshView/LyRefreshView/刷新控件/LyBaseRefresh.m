@@ -17,15 +17,9 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor greenColor];
-        [self addSubview:self.label];
+        
     }
     return self;
-}
-
-+ (instancetype)refreshView
-{
-    return [[self alloc] init];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -34,6 +28,7 @@
     
     if (!newSuperview) {
         [self.superview removeObserver:self forKeyPath:LyRefreshViewObservingkeyPath];
+        [self.superview removeObserver:self forKeyPath:@"contentSize"];
     }
 }
 
@@ -41,50 +36,40 @@
 {
     [super didMoveToSuperview];
     
-    self.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, contentH);
+    self.frame = CGRectMake(0, 0, self.superview.frame.size.width, contentH);
+    
+    UIView *superView = self.superview;
+    if ([superView isKindOfClass:[UIScrollView class]])
+    {
+        self.scrollView = (UIScrollView *)superView;
+        
+        self.originEdgeInsets = _scrollView.contentInset;
+        
+        [_scrollView addObserver:self forKeyPath:LyRefreshViewObservingkeyPath options:NSKeyValueObservingOptionNew context:nil];
+        
+        [_scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    }
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    self.label.frame = self.bounds;
 }
 
 - (void)setScrollView:(UIScrollView *)scrollView
 {
     _scrollView = scrollView;
-    
-    [_scrollView addObserver:self forKeyPath:LyRefreshViewObservingkeyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-}
-
-- (void)beginChangeEdgeInset
-{
-    UIEdgeInsets edge = self.scrollView.contentInset;
-    edge.top += self.scrollViewEdgeInsets.top;
-    edge.bottom += self.scrollViewEdgeInsets.bottom;
-    edge.left += self.scrollViewEdgeInsets.left;
-    edge.right += self.scrollViewEdgeInsets.right;
-    self.scrollView.contentInset = edge;
-}
-
-- (void)endChangeEdgeInset
-{
-    UIEdgeInsets edge = self.scrollView.contentInset;
-    edge.top -= self.scrollViewEdgeInsets.top;
-    edge.bottom -= self.scrollViewEdgeInsets.bottom;
-    edge.left -= self.scrollViewEdgeInsets.left;
-    edge.right -= self.scrollViewEdgeInsets.right;
-    self.scrollView.contentInset = edge;
 }
 
 - (void)endRefresh
 {
-    [UIView animateWithDuration:0.5 animations:^{
-        [self endChangeEdgeInset];
-    } completion:^(BOOL finished) {
-        self.refreshState = LyRefreshStateEnd;
-    }];
+    
+}
+
+- (void)endRefreshWithTitle:(NSString *)title
+{
+    
 }
 
 - (void)setRefreshState:(LyRefreshState)refreshState
@@ -94,23 +79,14 @@
     switch (refreshState) {
         case LyRefreshStateWill:
         {
-            self.label.text = @"将开始";
+            
         }
             break;
         case LyRefreshStateIng:
         {
-            self.label.text = @"正在刷新";
-            
-//            [UIView animateWithDuration:0.2 animations:^{
-//                [self beginChangeEdgeInset];
-//            }];
-            
-            NSLog(@"%f",self.scrollView.contentInset.top);
-            
             if (self.beginOperation) {
                 self.beginOperation();
             }
-            
         }
             break;
         case LyRefreshStateEnd:
@@ -129,15 +105,14 @@
     
 }
 
-- (UILabel *)label
+- (UIActivityIndicatorView *)activityIndicatorView
 {
-    if (!_label) {
-        _label = [[UILabel alloc] init];
-        _label.font = [UIFont systemFontOfSize:18];
-        _label.textColor = [UIColor redColor];
-        _label.textAlignment = NSTextAlignmentCenter;
+    if (!_activityIndicatorView) {
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] init];
+        _activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        [_activityIndicatorView startAnimating];
     }
-    return _label;
+    return _activityIndicatorView;
 }
 
 @end

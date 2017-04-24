@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "LyHeardRefresh.h"
+#import "LyFootRefresh.h"
 
 @interface UIScrollView (LyRefresh)
 
 @property(nonatomic,strong)LyHeardRefresh *ly_heard;
+@property(nonatomic,strong)LyFootRefresh  *ly_foot;
 
 @end

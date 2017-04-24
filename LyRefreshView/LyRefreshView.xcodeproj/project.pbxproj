@@ -17,6 +17,7 @@
 		2F7B649A1E7D0ED800C1EE61 /* LyRefreshViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7B64991E7D0ED800C1EE61 /* LyRefreshViewTests.m */; };
 		2F7B64A51E7D0ED800C1EE61 /* LyRefreshViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7B64A41E7D0ED800C1EE61 /* LyRefreshViewUITests.m */; };
 		2F7B64BA1E7D185900C1EE61 /* LyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7B64B91E7D185900C1EE61 /* LyViewController.m */; };
+		2F9E51981EAD7FB30043A463 /* LyFootRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E51971EAD7FB30043A463 /* LyFootRefresh.m */; };
 		2FADF0141EACA4C0000D0426 /* LyBaseRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADF00F1EACA4C0000D0426 /* LyBaseRefresh.m */; };
 		2FADF0151EACA4C0000D0426 /* LyHeardRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADF0111EACA4C0000D0426 /* LyHeardRefresh.m */; };
 		2FADF0161EACA4C0000D0426 /* UIScrollView+LyRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FADF0131EACA4C0000D0426 /* UIScrollView+LyRefresh.m */; };
@@ -60,6 +61,8 @@
 		2F7B64A61E7D0ED800C1EE61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F7B64B81E7D185900C1EE61 /* LyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyViewController.h; sourceTree = "<group>"; };
 		2F7B64B91E7D185900C1EE61 /* LyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyViewController.m; sourceTree = "<group>"; };
+		2F9E51961EAD7FB30043A463 /* LyFootRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyFootRefresh.h; sourceTree = "<group>"; };
+		2F9E51971EAD7FB30043A463 /* LyFootRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyFootRefresh.m; sourceTree = "<group>"; };
 		2FADF00E1EACA4C0000D0426 /* LyBaseRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyBaseRefresh.h; sourceTree = "<group>"; };
 		2FADF00F1EACA4C0000D0426 /* LyBaseRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyBaseRefresh.m; sourceTree = "<group>"; };
 		2FADF0101EACA4C0000D0426 /* LyHeardRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyHeardRefresh.h; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				2FADF00F1EACA4C0000D0426 /* LyBaseRefresh.m */,
 				2FADF0101EACA4C0000D0426 /* LyHeardRefresh.h */,
 				2FADF0111EACA4C0000D0426 /* LyHeardRefresh.m */,
+				2F9E51961EAD7FB30043A463 /* LyFootRefresh.h */,
+				2F9E51971EAD7FB30043A463 /* LyFootRefresh.m */,
 				2FADF0121EACA4C0000D0426 /* UIScrollView+LyRefresh.h */,
 				2FADF0131EACA4C0000D0426 /* UIScrollView+LyRefresh.m */,
 			);
@@ -311,6 +316,7 @@
 				2FADF0141EACA4C0000D0426 /* LyBaseRefresh.m in Sources */,
 				2FADF0161EACA4C0000D0426 /* UIScrollView+LyRefresh.m in Sources */,
 				2F3A55951E7E2C4B0001472E /* LyProcessView.m in Sources */,
+				2F9E51981EAD7FB30043A463 /* LyFootRefresh.m in Sources */,
 				2F7B64871E7D0ED800C1EE61 /* ViewController.m in Sources */,
 				2F7B64841E7D0ED800C1EE61 /* AppDelegate.m in Sources */,
 				2F7B64811E7D0ED800C1EE61 /* main.m in Sources */,

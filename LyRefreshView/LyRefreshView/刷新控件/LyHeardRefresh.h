@@ -15,6 +15,4 @@
 
 + (instancetype)heardRefreshWithBlock:(beginOperation)operation;
 
-- (void)endRefreshWithTitle:(NSString *)title;
-
 @end
